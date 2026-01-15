@@ -1,0 +1,53 @@
+seed: 1234
+device: cuda
+
+paths:
+  data_dir: data/pems  
+  run_dir: runs
+
+data:
+  traffic_file: pems_bay.csv    
+  adj_file: adj_mx_bay.pkl       
+  se_file: SE(PEMS).txt          
+  event_enabled: True
+  event_file: PEMS_events_eq4.csv 
+  steps_per_day: 288
+  train_ratio: 0.7
+  val_ratio: 0.1
+  scaler: standard
+
+model:
+  num_nodes: 325
+  in_dim: 1
+  out_dim: 1
+  hidden_dim: 64
+  se_dim: 64
+  te_dim: 16
+  event_dim: 8
+  num_heads: 4
+  dropout: 0.3
+  num_blocks: 2
+  diffusion_steps: 2
+  topk: 20
+  use_base_adaptive_adj: True
+  adaptive_adj_dim: 10
+  alpha_init: 0.5
+  use_eq7: True
+  use_eq9: True
+
+task:
+  P: 12
+  Q: 12
+
+training:
+  batch_size: 32
+  epochs: 100
+  lr: 0.002
+  weight_decay: 1e-4
+  clip_grad: 5.0
+  patience: 15
+  log_every: 50
+  num_workers: 0
+
+logging:
+  experiment_name: EADGN_Exp_Eq9_NoFusion

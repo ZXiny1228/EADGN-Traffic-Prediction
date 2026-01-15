@@ -1,0 +1,53 @@
+seed: 1234
+device: cuda
+
+paths:
+  data_dir: data
+  run_dir: runs
+
+logging:
+  experiment_name: EADGN_BJ500_py36
+
+data:
+  traffic_file: BJ500.csv
+  adj_file: adj_mx_BJ.pkl
+  se_file: SE(BJ500).txt
+  event_enabled: false
+  event_file: ""
+  steps_per_day: 288
+  train_ratio: 0.7
+  val_ratio: 0.1
+  scaler: standard
+  time_interval_min: 5
+
+
+task:
+  P: 12
+  Q: 12
+
+model:
+  num_nodes: 500
+  in_dim: 1
+  out_dim: 1
+  hidden_dim: 64
+  se_dim: 64
+  te_dim: 16
+  event_dim: 8
+  num_heads: 4
+  dropout: 0.1
+  num_blocks: 2
+  diffusion_steps: 2
+  topk: 20
+  use_base_adaptive_adj: true
+  adaptive_adj_dim: 10
+  alpha_init: 0.5
+
+training:
+  batch_size: 16
+  epochs: 50
+  lr: 0.001
+  weight_decay: 0.00001
+  clip_grad: 5.0
+  patience: 10
+  log_every: 50
+  num_workers: 0
